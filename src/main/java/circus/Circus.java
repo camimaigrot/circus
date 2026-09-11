@@ -1,13 +1,13 @@
 package circus;
 
+import circus.animal.*;
 import circus.equipment.Equipment;
 import circus.equipment.Cannon;
 import circus.equipment.Ladder;
 
-import circus.animal.Tiger;
-import circus.animal.Animal;
-import circus.animal.Duck;
-import circus.animal.Parrot;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Circus {
     private static Animal[] animals = {
@@ -42,8 +42,43 @@ public class Circus {
     }
 
     public static void main(String[] args) {
-        makeAnimalsTalk();
-        System.out.println("Total value of animals " + calculateAssetValue(animals));
-        System.out.println("Total value of equipments " + calculateAssetValue(equipments));
+        System.out.println("Number of animals in the circus: " + animals.length);
+
+        ArrayList<Animal> animalArrayList = new ArrayList<>(Arrays.asList(animals));
+        animalArrayList.add(new Elephant("StrongOne"));
+        System.out.println("Number of animals in the circus: " + animalArrayList.size());
+        printAllAnimals(animalArrayList);
+
+        Parrot andy  = new Parrot("Andy");
+        animalArrayList.add(andy);
+        printAllAnimals(animalArrayList);
+        System.out.println("Number of animals in the circus: " + animalArrayList.size());
+
+        Animal candidate = findAnimalReference(animalArrayList, "Andy");
+        System.out.println("Index of Andy: " + animalArrayList.indexOf(candidate));
+
+        System.out.println("\n\n BEFORE SORTING");
+        printAllAnimals(animalArrayList);
+        animalArrayList.sort(Animal.animalNameComparator);
+        System.out.println("\n\n AFTER SORTING");
+        printAllAnimals(animalArrayList);
+    }
+
+    /*
+    Prints all animals in the array list (of type Animal)
+     */
+    private static void printAllAnimals(ArrayList<Animal> animalArrayList) {
+        for (Animal a: animalArrayList){
+            System.out.println(a);
+        }
+    }
+
+    private static Animal findAnimalReference(ArrayList<Animal> animals, String nameOfAnimal){
+        for (Animal a: animals){
+            if (a.name == nameOfAnimal){
+                return a;
+            }
+        }
+        return null;
     }
 }
