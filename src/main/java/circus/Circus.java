@@ -1,11 +1,15 @@
 package circus;
 
-import circus.animal.*;
-import circus.equipment.Equipment;
+import circus.animal.Animal;
+import circus.animal.Elephant;
+import circus.animal.Duck;
+import circus.animal.Parrot;
+import circus.animal.Tiger;
+import circus.equipment.Cage;
 import circus.equipment.Cannon;
+import circus.equipment.Equipment;
 import circus.equipment.Ladder;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
